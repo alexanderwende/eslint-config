@@ -1,0 +1,13 @@
+{
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "typescript.preferences.importModuleSpecifierEnding": "js",
+  "javascript.preferences.importModuleSpecifier": "relative",
+  "javascript.preferences.importModuleSpecifierEnding": "js",
+  "editor.formatOnSave": false,
+  "editor.codeActionsOnSave": {
+    // "source.fixAll.eslint": "explicit",
+    // "source.organizeImports": "explicit"
+  },
+  "eslint.experimental.useFlatConfig": true,
+}
