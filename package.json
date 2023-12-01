@@ -8,6 +8,8 @@
   "types": "dist/index.d.ts",
   "exports": {
     ".": "./dist/index.js",
+    "./index": "./dist/index.js",
+    "./index.js": "./dist/index.js",
     "./configs/*": "./dist/configs/*.js",
     "./configs/*.js": "./dist/configs/*.js",
     "./package.json": "./package.json"
