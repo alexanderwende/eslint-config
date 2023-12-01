@@ -6,8 +6,8 @@
   "javascript.preferences.importModuleSpecifierEnding": "js",
   "editor.formatOnSave": false,
   "editor.codeActionsOnSave": {
-    // "source.fixAll.eslint": "explicit",
-    // "source.organizeImports": "explicit"
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "never"
   },
   "eslint.experimental.useFlatConfig": true,
 }
