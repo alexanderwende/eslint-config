@@ -1,6 +1,9 @@
-# @alexanderwende/eslint-config
+# @alexwende/eslint-config
 ESLint config for JavaScript and TypeScript projects using the new `FlatConfig` format.
 
+
+[![npm (scoped)](https://img.shields.io/npm/v/%40alexwende/eslint-config?color=limegreen&logo=npm)](https://www.npmjs.com/package/@alexwende/eslint-config)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-%23FE5196?logo=conventionalcommits&logoColor=white)](https://conventionalcommits.org)
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 
 ## Features
@@ -15,7 +18,7 @@ ESLint config for JavaScript and TypeScript projects using the new `FlatConfig` 
 ## Installation
 
 ```bash
-npm i -D eslint @alexanderwende/eslint-config
+npm i -D eslint @alexwende/eslint-config
 ```
 ## Usage
 
@@ -23,7 +26,7 @@ Create a `eslint.config.js` file in the root of your project:
 
 ```javascript
 // eslint.config.js
-import { create } from '@alexanderwende/eslint-config';
+import { create } from '@alexwende/eslint-config';
 
 export default create({
     typescript: true,
@@ -128,7 +131,7 @@ Using the new `FlatConfig` format, you can easily customize rules by adding addi
 
 ```javascript
 // eslint.config.js
-import { create } from '@alexanderwende/eslint-config';
+import { create } from '@alexwende/eslint-config';
 
 export default [
     ...create(),
@@ -149,7 +152,7 @@ specific globals and enables style rules.
 
 ```javascript
 // eslint.config.js
-import { create } from '@alexanderwende/eslint-config';
+import { create } from '@alexwende/eslint-config';
 
 export default create({
     environments: [{ env: 'node' }],
@@ -164,7 +167,7 @@ adds browser specific globals and enables style rules.
 
 ```javascript
 // eslint.config.js
-import { create } from '@alexanderwende/eslint-config';
+import { create } from '@alexwende/eslint-config';
 
 export default create({
     environments: [{ env: 'browser' }],
@@ -177,7 +180,7 @@ If you want to lint TypeScript files only, simply exclude all JavaScript files:
 
 ```javascript
 // eslint.config.js
-import { create } from '@alexanderwende/eslint-config';
+import { create } from '@alexwende/eslint-config';
 
 export default create({
     environments: [{ env: 'browser' }],
@@ -203,7 +206,7 @@ backing `tsconfig.json`:
 
 ```javascript
 // eslint.config.js
-import { create } from '@alexanderwende/eslint-config';
+import { create } from '@alexwende/eslint-config';
 
 export default create({
     environments: [
