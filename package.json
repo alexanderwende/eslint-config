@@ -6,6 +6,12 @@
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./configs/*": "./dist/configs/*.js",
+    "./configs/*.js": "./dist/configs/*.js",
+    "./package.json": "./package.json"
+  },
   "files": [
     "dist/",
     "src/"
@@ -30,7 +36,7 @@
     "prebuild": "npm run clean",
     "build": "tsc",
     "build:watch": "npm run build -- --watch",
-    "lint": "eslint src/",
+    "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix",
     "prerelease": "npm-run-all clean lint build",
     "release": "commit-and-tag-version",
@@ -52,6 +58,8 @@
     "globals": "^13.23.0"
   },
   "devDependencies": {
+    "@types/eslint": "^8.44.8",
+    "@types/eslint__js": "^8.42.3",
     "commit-and-tag-version": "^12.0.0",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.54.0",
