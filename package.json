@@ -38,7 +38,7 @@
     "build:watch": "npm run build -- --watch",
     "lint": "eslint .",
     "lint:fix": "npm run lint -- --fix",
-    "prerelease": "npm-run-all clean lint build",
+    "prerelease": "npm-run-all build lint",
     "release": "commit-and-tag-version",
     "release:dry": "npm run release -- --dry-run",
     "release:minor": "npm run release -- --release-as minor",
