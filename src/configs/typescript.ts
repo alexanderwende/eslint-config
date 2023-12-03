@@ -53,6 +53,11 @@ export const configTypeScript = (project: string | string[] | true = [TS_CONFIG_
  * Custom rules for TypeScript files.
  */
 export const rules: Linter.RulesRecord = {
-    // e.g.:
-    // [`${ pluginName }/no-useless-constructor`]: 'off',
+    [`${ pluginName }/no-confusing-void-expression`]: [
+        'error',
+        {
+            ignoreArrowShorthand: true,
+            ignoreVoidOperator: true,
+        },
+    ],
 };
