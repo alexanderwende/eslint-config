@@ -20,7 +20,9 @@
   ],
   "keywords": [
     "eslint",
-    "eslint-config"
+    "eslint config",
+    "flat config",
+    "styleguide"
   ],
   "author": "Alexander Wende",
   "license": "MIT",
