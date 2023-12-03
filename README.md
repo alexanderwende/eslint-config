@@ -50,7 +50,7 @@ npx eslint . --fix
 
 or add a script to your `package.json`:
 
-```json
+```jsonc
 // package.json
 {
     "scripts": {
@@ -240,7 +240,7 @@ installed.
 
 Update your `.vscode/settings.json` with the following options:
 
-```json
+```jsonc
 // .vscode/settings.json
 {
   // enable the new FlatConfig format
