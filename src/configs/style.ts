@@ -1,5 +1,6 @@
 import pluginStylistic from '@stylistic/eslint-plugin';
 import type { ESLint, Linter } from 'eslint';
+import { INDENT, QUOTES, SEMI } from './utils.js';
 
 /**
  * Customize the plugin name for nicer rules prefixes.
@@ -21,9 +22,9 @@ export const configStyle = (): Linter.FlatConfig => ({
     rules: {
         // load the recommended rules from the plugin
         ...pluginStylistic.configs.customize({
-            indent: 4,
-            quotes: 'single',
-            semi: true,
+            indent: INDENT,
+            quotes: QUOTES,
+            semi: SEMI,
             jsx: false,
             pluginName,
         }).rules as Linter.RulesRecord,
@@ -67,6 +68,50 @@ export const rules: Linter.RulesRecord = {
         'multiline-arguments',
     ],
     'style/generator-star-spacing': 'error',
+    'style/indent': [
+        'error',
+        INDENT,
+        {
+            ArrayExpression: 1,
+            CallExpression: { arguments: 1 },
+            FunctionDeclaration: { body: 1, parameters: 1 },
+            FunctionExpression: { body: 1, parameters: 1 },
+            ImportDeclaration: 1,
+            MemberExpression: 1,
+            ObjectExpression: 1,
+            flatTernaryExpressions: false,
+            offsetTernaryExpressions: false,
+            outerIIFEBody: 1,
+            SwitchCase: 1,
+            VariableDeclarator: 1,
+            ignoreComments: false,
+            ignoredNodes: [
+                'TemplateLiteral *',
+                'JSXElement',
+                'JSXElement > *',
+                'JSXAttribute',
+                'JSXIdentifier',
+                'JSXNamespacedName',
+                'JSXMemberExpression',
+                'JSXSpreadAttribute',
+                'JSXExpressionContainer',
+                'JSXOpeningElement',
+                'JSXClosingElement',
+                'JSXFragment',
+                'JSXOpeningFragment',
+                'JSXClosingFragment',
+                'JSXText',
+                'JSXEmptyExpression',
+                'JSXSpreadChild',
+                'TSUnionType',
+                'TSIntersectionType',
+                'TSTypeParameterInstantiation',
+                'FunctionExpression > .params[decorators.length > 0]',
+                'FunctionExpression > .params > :matches(Decorator, :not(:first-child))',
+                'ClassBody.body > PropertyDefinition[decorators.length > 0] > .key',
+            ],
+        },
+    ],
     'style/implicit-arrow-linebreak': 'error',
     'style/linebreak-style': 'error',
     'style/member-delimiter-style': [

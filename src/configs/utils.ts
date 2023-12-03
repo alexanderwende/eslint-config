@@ -1,6 +1,12 @@
 import type { Linter } from 'eslint';
 import globals from 'globals';
 
+export const INDENT = 4;
+
+export const QUOTES = 'single';
+
+export const SEMI = true;
+
 export const SOURCE_TYPE: Linter.ParserOptions['sourceType'] = 'module';
 
 export const ECMA_VERSION: Linter.ParserOptions['ecmaVersion'] = 'latest';
