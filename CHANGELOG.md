@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [0.0.4](https://github.com/alexanderwende/eslint-config/compare/v0.0.3...v0.0.4) (2023-12-04)
+
+
+### Bug Fixes
+
+* disable typescript/no-confusing-void-expression ([b8a7527](https://github.com/alexanderwende/eslint-config/commit/b8a7527eb393030f5c5dda6d4f951c26c032f016))
+
 ## [0.0.3](https://github.com/alexanderwende/eslint-config/compare/v0.0.2...v0.0.3) (2023-12-03)
 
 
