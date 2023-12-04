@@ -53,8 +53,10 @@ export const configTypeScript = (project: string | string[] | true = [TS_CONFIG_
  * Custom rules for TypeScript files.
  */
 export const rules: Linter.RulesRecord = {
+    // would be nice to have, but also reports on method calls
+    // inside of try/catch blocks which return void
     [`${ pluginName }/no-confusing-void-expression`]: [
-        'error',
+        'off',
         {
             ignoreArrowShorthand: true,
             ignoreVoidOperator: true,
