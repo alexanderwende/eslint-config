@@ -62,4 +62,14 @@ export const rules: Linter.RulesRecord = {
             ignoreVoidOperator: true,
         },
     ],
+    // allows us to use async functions as event handlers or
+    // promise initializers
+    [`${ pluginName }/no-misused-promises`]: [
+        'error',
+        {
+            checksVoidReturn: {
+                arguments: false,
+            },
+        },
+    ],
 };
