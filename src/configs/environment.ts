@@ -1,5 +1,5 @@
 import type { Linter } from 'eslint';
-import { GLOBALS } from './utils.js';
+import { GLOBALS, SOURCE_FILES } from './utils.js';
 
 export type Environment = 'browser' | 'node' | 'worker' | 'serviceworker';
 
@@ -9,7 +9,7 @@ export type Environment = 'browser' | 'node' | 'worker' | 'serviceworker';
  * @param env - the environment to enable
  * @param files - the files to enable the environment for
  */
-export const configEnvironment = (env: Environment, files?: Linter.FlatConfigFileSpec[]): Linter.FlatConfig => {
+export const configEnvironment = (env: Environment, files: Linter.FlatConfigFileSpec[] = SOURCE_FILES): Linter.FlatConfig => {
 
     const key = env === 'node'
         ? 'nodeBuiltin'

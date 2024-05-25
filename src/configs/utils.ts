@@ -11,6 +11,8 @@ export const SOURCE_TYPE: Linter.ParserOptions['sourceType'] = 'module';
 
 export const ECMA_VERSION: Linter.ParserOptions['ecmaVersion'] = 'latest';
 
+export const SOURCE_FILES: Linter.FlatConfigFileSpec[] = ['**/*'];
+
 export const TS_CONFIG_PATH = './tsconfig.json';
 
 export const TS_SOURCE_FILES: Linter.FlatConfigFileSpec[] = ['**/*.ts', '**/*.tsx'];
