@@ -10,4 +10,8 @@
     "source.organizeImports": "never"
   },
   "eslint.experimental.useFlatConfig": true,
+  "eslint.workingDirectories": [
+    "./",
+    "./test"
+  ],
 }

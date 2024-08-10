@@ -1,11 +1,12 @@
 import pluginStylistic from '@stylistic/eslint-plugin';
 import type { ESLint, Linter } from 'eslint';
-import { INDENT, QUOTES, SEMI } from './utils.js';
+import { INDENT, JSX, QUOTES, SEMI } from './utils.js';
 
 /**
  * Customize the plugin name for nicer rules prefixes.
  */
-const pluginName = 'style';
+// const pluginName = 'style';
+const pluginName = '@stylistic';
 
 /**
  * Enable the recommended stylistic rules.
@@ -15,9 +16,28 @@ const pluginName = 'style';
  *
  * For more information and rule details visit: https://eslint.style/.
  */
+// export const configStyle = (): Linter.FlatConfig => ({
+//     plugins: {
+//         style: pluginStylistic as ESLint.Plugin,
+//     },
+//     rules: {
+//         // load the recommended rules from the plugin
+//         ...pluginStylistic.configs.customize({
+//             indent: INDENT,
+//             quotes: QUOTES,
+//             semi: SEMI,
+//             jsx: JSX,
+//             pluginName,
+//         }).rules as Linter.RulesRecord,
+//         // load the custom rules
+//         ...rules,
+//     },
+// });
+
 export const configStyle = (): Linter.FlatConfig => ({
+
     plugins: {
-        style: pluginStylistic as ESLint.Plugin,
+        [pluginName]: pluginStylistic as ESLint.Plugin,
     },
     rules: {
         // load the recommended rules from the plugin
@@ -25,7 +45,7 @@ export const configStyle = (): Linter.FlatConfig => ({
             indent: INDENT,
             quotes: QUOTES,
             semi: SEMI,
-            jsx: false,
+            jsx: JSX,
             pluginName,
         }).rules as Linter.RulesRecord,
         // load the custom rules
@@ -34,87 +54,87 @@ export const configStyle = (): Linter.FlatConfig => ({
 });
 
 export const rules: Linter.RulesRecord = {
-    'style/array-bracket-newline': [
+    [`${ pluginName }/array-bracket-newline`]: [
         'error',
         {
             multiline: true,
         },
     ],
-    'style/array-element-newline': [
+    [`${ pluginName }/array-element-newline`]: [
         'error',
         'consistent',
     ],
-    'style/arrow-parens': [
+    [`${ pluginName }/arrow-parens`]: [
         'error',
         'as-needed',
     ],
-    'style/brace-style': [
+    [`${ pluginName }/brace-style`]: [
         'error',
         '1tbs',
         {
             allowSingleLine: true,
         },
     ],
-    'style/function-call-argument-newline': [
+    [`${ pluginName }/function-call-argument-newline`]: [
         'error',
         'consistent',
     ],
-    'style/function-call-spacing': [
+    [`${ pluginName }/function-call-spacing`]: [
         'error',
         'never',
     ],
-    'style/function-paren-newline': [
+    [`${ pluginName }/function-paren-newline`]: [
         'error',
         'multiline-arguments',
     ],
-    'style/generator-star-spacing': 'error',
-    'style/indent': [
-        'error',
-        INDENT,
-        {
-            ArrayExpression: 1,
-            CallExpression: { arguments: 1 },
-            FunctionDeclaration: { body: 1, parameters: 1 },
-            FunctionExpression: { body: 1, parameters: 1 },
-            ImportDeclaration: 1,
-            MemberExpression: 1,
-            ObjectExpression: 1,
-            flatTernaryExpressions: false,
-            offsetTernaryExpressions: false,
-            outerIIFEBody: 1,
-            SwitchCase: 1,
-            VariableDeclarator: 1,
-            ignoreComments: false,
-            ignoredNodes: [
-                'TemplateLiteral *',
-                'JSXElement',
-                'JSXElement > *',
-                'JSXAttribute',
-                'JSXIdentifier',
-                'JSXNamespacedName',
-                'JSXMemberExpression',
-                'JSXSpreadAttribute',
-                'JSXExpressionContainer',
-                'JSXOpeningElement',
-                'JSXClosingElement',
-                'JSXFragment',
-                'JSXOpeningFragment',
-                'JSXClosingFragment',
-                'JSXText',
-                'JSXEmptyExpression',
-                'JSXSpreadChild',
-                'TSUnionType',
-                'TSIntersectionType',
-                'TSTypeParameterInstantiation',
-                'FunctionExpression > .params[decorators.length > 0]',
-                'FunctionExpression > .params > :matches(Decorator, :not(:first-child))',
-                'ClassBody.body > PropertyDefinition[decorators.length > 0] > .key',
-            ],
-        },
-    ],
-    'style/implicit-arrow-linebreak': 'error',
-    'style/linebreak-style': 'error',
-    'style/member-delimiter-style': [
+    [`${ pluginName }/generator-star-spacing`]: 'error',
+    // [`${ pluginName }/indent`]: [
+    //     'error',
+    //     INDENT,
+    //     {
+    //         ArrayExpression: 1,
+    //         CallExpression: { arguments: 1 },
+    //         FunctionDeclaration: { body: 1, parameters: 1 },
+    //         FunctionExpression: { body: 1, parameters: 1 },
+    //         ImportDeclaration: 1,
+    //         MemberExpression: 1,
+    //         ObjectExpression: 1,
+    //         flatTernaryExpressions: false,
+    //         offsetTernaryExpressions: false,
+    //         outerIIFEBody: 1,
+    //         SwitchCase: 0,
+    //         VariableDeclarator: 1,
+    //         ignoreComments: false,
+    //         ignoredNodes: [
+    //             'TemplateLiteral *',
+    //             'JSXElement',
+    //             'JSXElement > *',
+    //             'JSXAttribute',
+    //             'JSXIdentifier',
+    //             'JSXNamespacedName',
+    //             'JSXMemberExpression',
+    //             'JSXSpreadAttribute',
+    //             'JSXExpressionContainer',
+    //             'JSXOpeningElement',
+    //             'JSXClosingElement',
+    //             'JSXFragment',
+    //             'JSXOpeningFragment',
+    //             'JSXClosingFragment',
+    //             'JSXText',
+    //             'JSXEmptyExpression',
+    //             'JSXSpreadChild',
+    //             'TSUnionType',
+    //             'TSIntersectionType',
+    //             'TSTypeParameterInstantiation',
+    //             'FunctionExpression > .params[decorators.length > 0]',
+    //             'FunctionExpression > .params > :matches(Decorator, :not(:first-child))',
+    //             'ClassBody.body > PropertyDefinition[decorators.length > 0] > .key',
+    //         ],
+    //     },
+    // ],
+    [`${ pluginName }/implicit-arrow-linebreak`]: 'error',
+    [`${ pluginName }/linebreak-style`]: 'error',
+    [`${ pluginName }/member-delimiter-style`]: [
         'error',
         {
             multiline: {
@@ -128,14 +148,14 @@ export const rules: Linter.RulesRecord = {
             multilineDetection: 'brackets',
         },
     ],
-    'style/object-curly-newline': [
+    [`${ pluginName }/object-curly-newline`]: [
         'error',
         {
             consistent: true,
             multiline: true,
         },
     ],
-    'style/object-property-newline': [
+    [`${ pluginName }/object-property-newline`]: [
         'error',
         {
             allowAllPropertiesOnSameLine: true,
@@ -144,26 +164,26 @@ export const rules: Linter.RulesRecord = {
     // this rule forces padding at the beginning and end of blocks
     // padding at the end of blocks looks bad, so we disable it
     // to allow padding at the beginning but not force it at the end
-    'style/padded-blocks': [
+    [`${ pluginName }/padded-blocks`]: [
         'off',
         'always',
         {
             allowSingleLineBlocks: true,
         },
     ],
-    'style/quote-props': [
+    [`${ pluginName }/quote-props`]: [
         'error',
         'as-needed',
     ],
-    'style/semi-style': [
+    [`${ pluginName }/semi-style`]: [
         'error',
         'last',
     ],
-    'style/space-before-function-paren': [
+    [`${ pluginName }/space-before-function-paren`]: [
         'error',
         'always',
     ],
-    'style/spaced-comment': [
+    [`${ pluginName }/spaced-comment`]: [
         'error',
         'always',
         {
@@ -178,13 +198,13 @@ export const rules: Linter.RulesRecord = {
             },
         },
     ],
-    'style/switch-colon-spacing': [
+    [`${ pluginName }/switch-colon-spacing`]: [
         'error', {
             after: true,
             before: false,
         },
     ],
-    'style/template-curly-spacing': [
+    [`${ pluginName }/template-curly-spacing`]: [
         'error',
         'always',
     ],

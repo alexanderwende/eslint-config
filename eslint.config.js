@@ -5,7 +5,9 @@ export default [
         environments: [{ env: 'node' }],
         ecmaVersion: 2022,
         sourceType: 'module',
-        typescript: true,
+        typescript: {
+            files: ['./src/**/*.ts'],
+        },
         style: true,
         ignores: [
             'dist/',

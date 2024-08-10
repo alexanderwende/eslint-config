@@ -1,6 +1,6 @@
 import type { Linter } from 'eslint';
 import { Environment, configEnvironment } from './configs/environment.js';
-import { configImport } from './configs/import.js';
+// import { configImport } from './configs/import.js';
 import { configJavaScript } from './configs/javascript.js';
 import { configStyle } from './configs/style.js';
 import { configTypeScript } from './configs/typescript.js';
@@ -12,7 +12,7 @@ export interface ConfigOptions {
     /**
      * Ignore files matching the given glob patterns.
      */
-    ignores?: Linter.FlatConfigFileSpec[];
+    ignores?: string[];
     /**
      * The type of JavaScript source code (defaults to `'module'`).
      */
@@ -21,6 +21,10 @@ export interface ConfigOptions {
      * The version of ECMAScript to support (defaults to `'latest'`).
      */
     ecmaVersion?: Linter.ParserOptions['ecmaVersion'];
+    /**
+     * Enable jsx support.
+     */
+    jsx?: boolean;
     /**
      * Enable TypeScript support.
      *
@@ -37,7 +41,7 @@ export interface ConfigOptions {
         /**
          * The files to enable typescript linting for (defaults to `['**\/*.ts', '**\/*.tsx']`).
          */
-        files?: Linter.FlatConfigFileSpec[];
+        files?: Linter.FlatConfig['files'];
     };
     /**
      * Enable environment-specific globals for matching files.
@@ -50,7 +54,7 @@ export interface ConfigOptions {
         /**
          * The files to enable the environment for. If not set, the environment will be enabled for all files.
          */
-        files?: Linter.FlatConfigFileSpec[];
+        files?: Linter.FlatConfig['files'];
     }[];
     /**
      * Enable style rules.
@@ -88,7 +92,7 @@ export interface ConfigOptions {
  */
 export function create (options?: ConfigOptions): Linter.FlatConfig[] {
 
-    const { ecmaVersion, environments, ignores, sourceType, typescript, style } = options ?? {};
+    const { ecmaVersion, environments, ignores, jsx, sourceType, typescript, style } = options ?? {};
 
     const configs: Linter.FlatConfig[] = [];
 
@@ -98,10 +102,10 @@ export function create (options?: ConfigOptions): Linter.FlatConfig[] {
 
         const { project = undefined, files = undefined } = typeof typescript === 'object' ? typescript : {};
 
-        configs.push(configTypeScript(project, files));
+        configs.push(...(configTypeScript(project, files, jsx) as Linter.FlatConfig[]));
     }
 
-    configs.push(configImport(sourceType, ecmaVersion, !!typescript));
+    // configs.push(configImport(sourceType, ecmaVersion, !!typescript));
 
     if (style) {
 
@@ -130,7 +134,7 @@ export function create (options?: ConfigOptions): Linter.FlatConfig[] {
 export const configs = {
     javascript: configJavaScript,
     typescript: configTypeScript,
-    import: configImport,
+    // import: configImport,
     style: configStyle,
     environment: configEnvironment,
 };
