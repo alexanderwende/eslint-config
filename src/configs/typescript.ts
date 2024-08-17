@@ -1,52 +1,36 @@
-import pluginTypeScript from '@typescript-eslint/eslint-plugin';
-import parserTypeScript from '@typescript-eslint/parser';
-import type { Linter, ESLint } from 'eslint';
-import { changeRulesPrefix, SOURCE_TYPE, TS_CONFIG_PATH, TS_SOURCE_FILES } from './utils.js';
+import type { Linter } from 'eslint';
+import tseslint from 'typescript-eslint';
+import { JSX, SOURCE_TYPE, TS_SOURCE_FILES } from './utils.js';
 
 /**
- * Customize the plugin name for nicer rules prefixes.
+ * The name of the plugin, used in rule prefixes and needed for custom rules records.
  */
-const pluginName = 'typescript';
+const pluginName = '@typescript-eslint';
 
 /**
  * Enable the recommended rules for TypeScript files.
  *
  * @remarks
- * https://typescript-eslint.io/linting/typed-linting#specifying-tsconfigs
+ * https://typescript-eslint.io/getting-started/typed-linting
  *
- * @param project - the project's `tsconfig.json` file
  * @param files - the files to enable typescript linting for
+ * @param jsx - enable jsx support
  */
-export const configTypeScript = (project: string | string[] | true = [TS_CONFIG_PATH], files = TS_SOURCE_FILES): Linter.FlatConfig => ({
-    files,
+export const configTypeScript = (files: Linter.Config['files'] = TS_SOURCE_FILES, jsx = JSX) => tseslint.config({
+    extends: [...tseslint.configs.strictTypeChecked],
     languageOptions: {
-        parser: parserTypeScript as Linter.ParserModule,
         parserOptions: {
+            projectService: true,
             sourceType: SOURCE_TYPE,
-            project,
+            ecmaFeatures: {
+                jsx,
+            },
         },
     },
-    plugins: {
-        [pluginName]: pluginTypeScript as unknown as ESLint.Plugin,
-    },
     rules: {
-        // load the recommended rules from the plugin
-        ...changeRulesPrefix(
-            // eslint-disable-next-line typescript/no-non-null-assertion
-            pluginTypeScript.configs['eslint-recommended'].overrides![0].rules!,
-            '@typescript-eslint',
-            pluginName,
-        ),
-        // load the strict rules from the plugin with type-checking
-        ...changeRulesPrefix(
-            // eslint-disable-next-line typescript/no-non-null-assertion
-            pluginTypeScript.configs['strict-type-checked'].rules!,
-            '@typescript-eslint',
-            pluginName,
-        ),
-        // load the custom rules
         ...rules,
     },
+    files,
 });
 
 /**

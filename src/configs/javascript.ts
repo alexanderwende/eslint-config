@@ -1,14 +1,19 @@
 import pluginJavaScript from '@eslint/js';
 import type { Linter } from 'eslint';
-import { ECMA_VERSION, SOURCE_TYPE, getEcmaGlobals } from './utils.js';
+import { ECMA_VERSION, JSX, SOURCE_TYPE, getEcmaGlobals } from './utils.js';
 
 /**
  * Enable the recommended rules for JavaScript files.
  *
  * @param sourceType - the type of JavaScript source code
  * @param ecmaVersion - the version of ECMAScript to support
+ * @param jsx - enable jsx support
  */
-export const configJavaScript = (sourceType = SOURCE_TYPE, ecmaVersion = ECMA_VERSION): Linter.FlatConfig => ({
+export const configJavaScript = (
+    sourceType: Linter.SourceType = SOURCE_TYPE,
+    ecmaVersion: Linter.EcmaVersion = ECMA_VERSION,
+    jsx = JSX,
+): Linter.Config => ({
     languageOptions: {
         sourceType,
         ecmaVersion,
@@ -18,6 +23,9 @@ export const configJavaScript = (sourceType = SOURCE_TYPE, ecmaVersion = ECMA_VE
         parserOptions: {
             ecmaVersion,
             sourceType,
+            ecmaFeatures: {
+                jsx,
+            },
         },
     },
     linterOptions: {

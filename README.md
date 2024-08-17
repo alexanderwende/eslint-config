@@ -11,7 +11,7 @@ ESLint config for JavaScript and TypeScript projects using the new `FlatConfig` 
 - Uses the new `FlatConfig` format for easier composability
 - Supports TypeScript via [@typescript-eslint](https://github.com/typescript-eslint/typescript-eslint)
 - Supports stylistic rules via [@stylistic/eslint-plugin](https://github.com/eslint-stylistic/eslint-stylistic)
-- Supports linting imports via [eslint-plugin-i](https://github.com/un-es/eslint-plugin-i)
+- Supports linting imports via [eslint-plugin-import-x](https://github.com/antfu/eslint-plugin-import-x)
 - Supports environment-specific globals via [globals](https://github.com/sindresorhus/globals)
 - Factory method for easy configuration
 
@@ -32,7 +32,6 @@ export default create({
     typescript: true,
     style: true,
     ignores: [
-        'coverage/',
         'dist/',
     ],
 });
@@ -65,38 +64,36 @@ or add a script to your `package.json`:
 The `create` factory method accepts an optional configuration object with the following properties:
 
 ```typescript
-interface ConfigOptions {
+export interface ConfigOptions {
     /**
      * Ignore files matching the given glob patterns.
      */
-    ignores?: Linter.FlatConfigFileSpec[];
+    ignores?: Linter.Config['ignores'];
     /**
-     * The type of JavaScript source code (defaults to 'module').
+     * The type of JavaScript source code (defaults to `'module'`).
      */
     sourceType?: Linter.ParserOptions['sourceType'];
     /**
-     * The version of ECMAScript to support (defaults to 'latest').
+     * The version of ECMAScript to support (defaults to `'latest'`).
      */
     ecmaVersion?: Linter.ParserOptions['ecmaVersion'];
+    /**
+     * Enable jsx support.
+     */
+    jsx?: boolean;
     /**
      * Enable TypeScript support.
      *
      * @remarks
-     * If set to `true`, the default TypeScript config will be used. 
-     * If set to `false`, TypeScript support will be disabled. 
-     * You can also pass an object with additional configuration options.
+     * If set to `true`, TypeScript will be enabled for all `.ts` files in the project. If set to `false`,
+     * TypeScript support will be disabled. You can also pass an object to configure TypeScript support.
+     * See {@link configTypeScript} for details.
      */
     typescript?: boolean | {
         /**
-         * The project's `tsconfig.json` file 
-         * (defaults to `'./tsconfig.json'`).
+         * The files to enable typescript linting for (defaults to `['**\/*.ts', '**\/*.tsx']`).
          */
-        project?: string | string[] | true;
-        /**
-         * The files to enable typescript linting for 
-         * (defaults to `['**\/*.ts', '**\/*.tsx']`).
-         */
-        files?: Linter.FlatConfigFileSpec[];
+        files?: Linter.Config['files'];
     };
     /**
      * Enable environment-specific globals for matching files.
@@ -107,10 +104,9 @@ interface ConfigOptions {
          */
         env: Environment;
         /**
-         * The files to enable the environment for. 
-         * If not set, the environment will be enabled for all files.
+         * The files to enable the environment for. If not set, the environment will be enabled for all files.
          */
-        files?: Linter.FlatConfigFileSpec[];
+        files?: Linter.Config['files'];
     }[];
     /**
      * Enable style rules.
@@ -139,7 +135,7 @@ export default [
         // with `files`, the rules will only be applied to matching files
         // files: ['some-package/**/*.ts'],
         rules: {
-            'typescript/no-useless-constructor': 'off',
+            '@typescript-eslint/no-useless-constructor': 'off',
         },
     },
 ];
@@ -192,47 +188,6 @@ export default create({
 });
 ```
 
-### TypeScript for Node and Browser
-
-When supporting multiple environments in a single repository, you will often need multiple `tsconfig.json` files to make 
-the correct libs and types per environment available to TypeScript. With multiple `tsconfig.json` files, the question of
-which one to use for linting arises. There are multiple solutions to this problem, check out the 
-[typescript-eslint docs](https://typescript-eslint.io/linting/typed-linting/monorepos) for detailed information.
-
-In the following example, we assume that the code for each environment is located in a separate directory, each 
-containing a separate `tsconfig.json` file. The `project` option of the `typescript` config allows passing an array of
-relative paths (including globs). For each file being linted, the first matching project path will be used as its 
-backing `tsconfig.json`:
-
-```javascript
-// eslint.config.js
-import { create } from '@alexwende/eslint-config';
-
-export default create({
-    environments: [
-        { 
-            env: 'browser', 
-            files: ['src/app/**/*.ts'],
-        },
-        { 
-            env: 'node', 
-            files: ['src/scripts/**/*.ts'],
-        },
-    ],
-    typescript: {
-        project: [
-            './src/app/tsconfig.json',
-            './src/scripts/tsconfig.json',
-        ],
-        // alternatively as a glob
-        // project: ['./src/*/tsconfig.json'],
-    }},
-    style: true,
-    ignores: [
-        'dist/',
-    ],
-});
-```
 ## VSCode Integration
 
 Ensure you have the [VS Code ESLint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
@@ -244,7 +199,7 @@ Update your `.vscode/settings.json` with the following options:
 // .vscode/settings.json
 {
   // enable the new FlatConfig format
-  "eslint.experimental.useFlatConfig": true,
+  "eslint.useFlatConfig": true,
 
   // if you want eslint to fix and format your code on save:
 
