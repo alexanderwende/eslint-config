@@ -12,11 +12,11 @@ export default [
             'import-x/no-extraneous-dependencies': [
                 'error',
                 {
-                    // allow imports from dev dependencies
                     devDependencies: false,
                     optionalDependencies: false,
                     peerDependencies: false,
                     includeInternal: true,
+                    // allow type imports from dev dependencies
                     includeTypes: false,
                 },
             ],
