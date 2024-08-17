@@ -93,8 +93,8 @@ export const rules: Linter.RulesRecord = {
     [`${ pluginName }/no-extraneous-dependencies`]: [
         'error',
         {
-            // allow dev dependencies in test files by default (usually we import the test framework)
             devDependencies: [
+                // allow dev dependencies in test files by default (usually we import the test framework)
                 '**/*.test.js',
                 '**/*.test.jsx',
                 '**/*.test.ts',
@@ -103,6 +103,9 @@ export const rules: Linter.RulesRecord = {
                 '**/*.spec.jsx',
                 '**/*.spec.ts',
                 '**/*.spec.tsx',
+                // allow dev dependencies in config files
+                '**/*.config.js',
+                '**/*.config.ts',
             ],
             optionalDependencies: false,
             peerDependencies: false,
