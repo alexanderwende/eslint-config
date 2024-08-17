@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.0.0](https://github.com/alexanderwende/eslint-config/compare/v0.0.5...v1.0.0) (2024-08-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to `eslint` v9 and `typescript-eslint` v8
+* removed the config's `typescript.project` option in favor of `typescript-eslint`'s new `projectService` option
+
+### Features
+
+* upgrade to `eslint` v9 and `typescript-eslint` v8 ([af471b4](https://github.com/alexanderwende/eslint-config/commit/af471b4e831dfef8644fcd1c77bd7f7f7178e365))
+
 ## [0.0.5](https://github.com/alexanderwende/eslint-config/compare/v0.0.4...v0.0.5) (2023-12-06)
 
 

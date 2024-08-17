@@ -1,6 +1,6 @@
 {
   "name": "@alexwende/eslint-config",
-  "version": "0.0.5",
+  "version": "1.0.0",
   "description": "ESLint config for JavaScript and TypeScript projects using the new FlatConfig format.",
   "type": "module",
   "main": "dist/index.js",
