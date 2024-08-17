@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.0.1](https://github.com/alexanderwende/eslint-config/compare/v1.0.0...v1.0.1) (2024-08-17)
+
+
+### Bug Fixes
+
+* allow importing from `devDependencies` in `.config.js|ts` files ([44b5206](https://github.com/alexanderwende/eslint-config/commit/44b52069f30df9802628b73be0db4e8bf8e68e2c))
+
 ## [1.0.0](https://github.com/alexanderwende/eslint-config/compare/v0.0.5...v1.0.0) (2024-08-17)
 
 
