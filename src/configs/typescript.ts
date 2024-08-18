@@ -56,4 +56,13 @@ export const rules: Linter.RulesRecord = {
             },
         },
     ],
+    [`${ pluginName }/restrict-template-expressions`]: [
+        'error',
+        {
+            allowBoolean: true,
+            allowNullish: true,
+            allowNumber: true,
+            allowRegExp: true,
+        },
+    ],
 };
