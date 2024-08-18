@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.0.2](https://github.com/alexanderwende/eslint-config/compare/v1.0.1...v1.0.2) (2024-08-18)
+
+
+### Bug Fixes
+
+* @typescript-eslint/restrict-template-expressions allow reasonable types ([ea416e1](https://github.com/alexanderwende/eslint-config/commit/ea416e1455d863523dd607c06b6819e68f95b9c4))
+
 ## [1.0.1](https://github.com/alexanderwende/eslint-config/compare/v1.0.0...v1.0.1) (2024-08-17)
 
 
