@@ -56,6 +56,18 @@ export const rules: Linter.RulesRecord = {
             },
         },
     ],
+    [`${ pluginName }/no-unused-vars`]: [
+        'error',
+        {
+            args: 'after-used',
+            caughtErrors: 'all',
+            ignoreRestSiblings: true,
+            argsIgnorePattern: '^_',
+            caughtErrorsIgnorePattern: '^_',
+            destructuredArrayIgnorePattern: '^_',
+            varsIgnorePattern: '^_',
+        },
+    ],
     [`${ pluginName }/restrict-template-expressions`]: [
         'error',
         {
