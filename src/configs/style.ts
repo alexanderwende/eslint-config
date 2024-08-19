@@ -1,4 +1,4 @@
-import pluginStylistic from '@stylistic/eslint-plugin';
+import pluginStylistic, { type RuleOptions } from '@stylistic/eslint-plugin';
 import type { Linter } from 'eslint';
 import { INDENT, JSX, QUOTES, SEMI } from './utils.js';
 
@@ -30,6 +30,7 @@ export const configStyle = (jsx = JSX): Linter.Config => {
     // add our own style rules to it
     config.rules = {
         ...config.rules,
+        ...indentRule(config),
         ...rules,
     };
 
@@ -147,4 +148,37 @@ export const rules: Linter.RulesRecord = {
         'error',
         'always',
     ],
+};
+
+/**
+ * Extend `@stylistic`s indent rule to ignore indentation within template literals.
+ * We use template literals for custom element templates and we need a bit of
+ * flexibility when indenting ternary expressions. We don't want to rewrite the
+ * rule (it's pretty complex), to be able to update `@stylistic` and receive rule
+ * updates.
+ */
+const indentRule = (config: Linter.Config): Linter.RulesRecord | undefined => {
+
+    const rule = config.rules?.[`${ pluginName }/indent`];
+
+    if (!rule) return undefined;
+
+    const [severity, ...options] = rule as Linter.RuleSeverityAndOptions<RuleOptions['@stylistic/indent']>;
+    const [indent, rest] = options as RuleOptions['@stylistic/indent'];
+
+    const merged: RuleOptions['@stylistic/indent'][1] = {
+        ...rest,
+        ignoredNodes: [
+            ...(rest?.ignoredNodes ?? []),
+            'TemplateLiteral *',
+        ],
+    };
+
+    return {
+        [`${ pluginName }/indent`]: [
+            severity,
+            indent,
+            merged,
+        ],
+    };
 };
