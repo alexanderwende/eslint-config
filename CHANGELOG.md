@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.0.3](https://github.com/alexanderwende/eslint-config/compare/v1.0.2...v1.0.3) (2024-08-19)
+
+
+### Bug Fixes
+
+* update `@stylistic/indent` rule to ignore template literals ([949ed53](https://github.com/alexanderwende/eslint-config/commit/949ed53c61e27b6a6022a20b38121f5ab69c7768))
+* update `@typescript-eslint/no-unused-vars` rule ([6194f5b](https://github.com/alexanderwende/eslint-config/commit/6194f5bfc4828982fa53b86d977986356d287854))
+
 ## [1.0.2](https://github.com/alexanderwende/eslint-config/compare/v1.0.1...v1.0.2) (2024-08-18)
 
 
